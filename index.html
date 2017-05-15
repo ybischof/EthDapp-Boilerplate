@@ -6,8 +6,9 @@
     </head>
     <body>
         <h1>Welcome to web3 - looking like web1!</h1>
-        <div id="content">Can I has web3?!</div>
         <img src="./ani_what.gif" alt="WHATEVER MAKES YOU HAPPY" width="300" height="50" border="0">
+        <div id="content">Can I has web3?!</div>
+        <div>greeting: <div id="greeting"></div></div>
         <script>
             window.addEventListener('load', function() {
 
@@ -23,7 +24,13 @@
                 window.web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
             }
 
-            // Now you can start your app & access web3 freely:
+            var helloContract = web3.eth.contract([{"constant":false,"inputs":[{"name":"newGreeting","type":"string"}],"name":"setGreeting","outputs":[],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"greeting","outputs":[{"name":"","type":"string"}],"payable":false,"type":"function"},{"anonymous":false,"inputs":[{"indexed":false,"name":"setter","type":"address"},{"indexed":false,"name":"time","type":"uint256"},{"indexed":false,"name":"newGreeting","type":"string"}],"name":"SetGreetingEvent","type":"event"}]);
+            var hello = helloContract.at('0x930609B7b6181fb4E5a72732722e44f88707F6A5');
+            hello.greeting(function(error, response) {
+                if (error)
+                    console.log('Error: ' + error);
+                $('#greeting').text(response);
+            }
 
             // do whatever you want to here!
 
