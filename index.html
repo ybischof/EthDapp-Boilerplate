@@ -8,7 +8,10 @@
         <h1>Welcome to web3 - looking like web1!</h1>
         <img src="./ani_what.gif" alt="WHATEVER MAKES YOU HAPPY" width="300" height="50" border="0">
         <div id="content">Can I has web3?!</div>
-        <div>greeting: <div id="greeting"></div></div>
+        <br />
+        <span>greeting: <div id="greeting"></div></span>
+        <br />
+        <div id="updates">updates: </div>
         <script>
             window.addEventListener('load', function() {
 
@@ -30,6 +33,13 @@
                 if (error)
                     console.log('Error: ' + error);
                 $('#greeting').text(response);
+            });
+
+            helloContract.SetGreetingEvent(function(error, data) {
+                if (error)
+                    console.log('Error in event handler: ' + error);
+                else
+                    $('#updates').append(JSON.stringify(data));
             });
 
             // do whatever you want to here!
