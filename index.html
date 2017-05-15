@@ -35,7 +35,7 @@
                 $('#greeting').text(response);
             });
 
-            helloContract.SetGreetingEvent.watch(function(error, data) {
+            hello.SetGreetingEvent(function(error, data) {
                 if (error)
                     console.log('Error in event handler: ' + error);
                 else {
