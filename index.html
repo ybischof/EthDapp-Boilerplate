@@ -35,7 +35,7 @@
                 $('#greeting').text(response);
             });
 
-            hello.SetGreetingEvent.watch({ fromBlock: 938898}, function(error, data) {
+            hello.SetGreetingEvent({ fromBlock: 938898}).watch(function(error, data) {
                 if (error)
                     console.log('Error in event handler: ' + error);
                 else {
